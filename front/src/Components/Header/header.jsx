@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import NavigationLinks from "@/Components/Header/navLinks";
 import Logo from "@/Components/Header/logo";
 import LogOut from "@/Components/Account/LogOut";
+import { Play } from "@/Components/Header/play";
 
-export default function Header({ font }: { font: string }) {
+export default function Header({ font }) {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false); // Estado para verificar si estamos en el cliente
-  const { user } = useSelector((state: any) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
-  // Usar `useEffect` para activar `isClient` después del renderizado inicial
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -29,7 +29,7 @@ export default function Header({ font }: { font: string }) {
         <Logo />
         <NavigationLinks />
       </div>
-      {/* Solo renderizar los botones cuando estemos en el cliente */}
+      <Play />
       {isClient &&
         (user ? (
           <LogOut />

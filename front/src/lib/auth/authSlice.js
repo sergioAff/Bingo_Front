@@ -118,7 +118,7 @@ export const getUserInfo = createAsyncThunk(
   "auth/getUserInfo",
   async (_, thunkAPI) => {
     try {
-      const accessToken = thunkAPI.getState().auth.user.access;
+      const accessToken = thunkAPI.getState().auth.user?.access;
       return await authService.getUserInfo(accessToken);
     } catch (error) {
       const message =

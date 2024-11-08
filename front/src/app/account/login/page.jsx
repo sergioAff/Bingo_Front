@@ -39,16 +39,14 @@ export default function Login() {
   useEffect(() => {
     if (isError) {
       alert(message);
-      dispatch(reset()); // Limpiar el estado en caso de error
     }
 
     if (isSuccess && user) {
       alert("Login successful!");
-      localStorage.setItem("authToken", user.token);
-      window.location.href = "../"; // Redirigir al dashboard
+      localStorage.setItem("authToken", email);
+      window.location.href = "../";
     }
 
-    // Obtener la información del usuario después de autenticarse correctamente
     if (isSuccess && !user) {
       dispatch(getUserInfo());
     }
@@ -56,7 +54,7 @@ export default function Login() {
     return () => {
       dispatch(reset()); // Limpiar el estado después del efecto
     };
-  }, [isError, isSuccess, user, dispatch, message]);
+  }, [isError, isSuccess, user, dispatch, message, email]);
 
   return (
     <div
@@ -106,7 +104,7 @@ export default function Login() {
             </div>
             <div className="flex items-center justify-between">
               <Link
-                href="/reset-password"
+                href="/account/resetPassword"
                 className="text-sm font-medium text-pastelMint hover:underline text-gray-900"
               >
                 Forgot password?

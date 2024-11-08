@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetPasswordConfirm } from "@/lib/auth/authSlice";
 import Spinner from "@/Components/Account/Spinner";
+import { pressStart2P } from "@/app/fonts/fonts"; // Fuente personalizada si es necesario
 
 const ResetPasswordPageConfirm = () => {
   const [formData, setFormData] = useState({
@@ -63,45 +64,83 @@ const ResetPasswordPageConfirm = () => {
 
   useEffect(() => {
     if (isError) {
-      alert(message);
+      alert(message); // Mensaje de error
     }
     if (isSuccess) {
       alert("Your password was reset successfully.");
+      // Aquí puedes redirigir a otra página si es necesario, por ejemplo:
+      window.location.href = "/login"; // Redirige a la página de login
     }
   }, [isError, isSuccess, message]);
 
   return (
     <>
-      <div className="container auth__container">
-        <h1 className="main__title">Reset Password here</h1>
+      <div
+        className={`py-14 flex justify-center items-center min-h-screen bg-pastelBlue ${pressStart2P.className}`}
+      >
+        <div className="w-full sm:max-w-md bg-primary/85 rounded-lg shadow-lg ring-1 ring-gray-300 hover:ring-offset-2 transition-all duration-100 ease-in-out ring-offset-gray-300">
+          <div className="p-6 sm:p-8">
+            <h1 className="text-base md:text-lg font-semibold text-gray-900 text-center mb-6">
+              Reset Password
+            </h1>
+            {isLoading && <Spinner />}{" "}
+            {/* Muestra el spinner si está cargando */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Campo de nueva contraseña */}
+              <div>
+                <label
+                  htmlFor="new_password"
+                  className="block mb-2 text-sm font-medium text-gray-700"
+                >
+                  New Password
+                </label>
+                <input
+                  type="password"
+                  id="new_password"
+                  name="new_password"
+                  value={new_password}
+                  onChange={handleChange}
+                  required
+                  className="border rounded-lg focus:ring-pastelYellow focus:border-pastelYellow block w-full p-2.5 bg-gray-100 border-gray-800 placeholder-gray-500 text-gray-900 focus:ring-2"
+                  placeholder="Enter new password"
+                />
+              </div>
 
-        {isLoading && <Spinner />}
+              {/* Confirmar nueva contraseña */}
+              <div>
+                <label
+                  htmlFor="re_new_password"
+                  className="block mb-2 text-sm font-medium text-gray-700"
+                >
+                  Confirm New Password
+                </label>
+                <input
+                  type="password"
+                  id="re_new_password"
+                  name="re_new_password"
+                  value={re_new_password}
+                  onChange={handleChange}
+                  required
+                  className="border rounded-lg focus:ring-pastelYellow focus:border-pastelYellow block w-full p-2.5 bg-gray-100 border-gray-800 placeholder-gray-500 text-gray-900 focus:ring-2"
+                  placeholder="Re-enter new password"
+                />
+              </div>
 
-        <form className="auth__form">
-          <input
-            type="password"
-            placeholder="New password"
-            name="new_password"
-            onChange={handleChange}
-            value={new_password}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Confirm new password"
-            name="re_new_password"
-            onChange={handleChange}
-            value={re_new_password}
-            required
-          />
-          <button
-            className="btn btn-primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Reset Password
-          </button>
-        </form>
+              {/* Botón de reset */}
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="w-full text-white bg-pastelYellow hover:bg-pastelMint focus:ring-4 focus:outline-none focus:ring-pastelYellow font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Reset Password
+                </button>
+              </div>
+            </form>
+            <p className="text-sm font-light text-gray-600 text-center mt-4">
+              If you have not received the email, check your spam folder
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
