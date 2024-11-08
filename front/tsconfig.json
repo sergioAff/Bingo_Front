@@ -22,6 +22,24 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/redux/actions/user.js",
+    "src/app/account/register/page.jsx",
+    "src/lib/auth/authSlice.js",
+    "src/app/account/login/page.jsx",
+    "src/app/account/activate/page.jsx",
+    "src/Components/PretectedRoute.jsx",
+    "src/Components/Account/LogOut.jsx",
+    "src/app/account/resetPassword/page.jsx",
+    "src/app/account/resetPasswordConfirm/page.jsx",
+    "src/app/account/resetPasswordConfirm/page.jsx",
+    "src/app/account/resetPassword/page.jsx",
+    "src/app/account/resetPasswordConfirm/page.jsx",
+    "src/app/account/resetPassword/page.jsx"
+  ],
   "exclude": ["node_modules"]
 }

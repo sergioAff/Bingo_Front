@@ -9,11 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#FCCB3D", // Amarillo dorado
+        secondary: "#FF6F61", // Rojo coral
+        accent: "#4C4C9B", // Azul oscuro
+        neutral: "#F0F0F0", // Gris claro
+        darkBlue: "#2E3A8C", // Azul marino
+        mintGreen: "#2A9D8F", // Verde menta
       },
     },
   },
   plugins: [],
 };
+
 export default config;
