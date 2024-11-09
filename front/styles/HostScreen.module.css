@@ -1,0 +1,166 @@
+/* General Container */
+.container {
+  max-width: 1980px;
+  background-color: #e5e5e5;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Main Layout */
+.main {
+  background-color: #e5e5e5;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 2.5rem;
+  margin-top: -30px;
+  margin-bottom: 40px;
+  color: #262b29;
+}
+
+/* Wait Room */
+.main_wait {
+  background: linear-gradient(
+    129deg,
+    rgba(200, 79, 0, 1) 43%,
+    rgba(254, 127, 45, 1) 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title_wait {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.room {
+  font-size: 200px;
+  color: #fff;
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+
+.playersList {
+  width: 100%;
+  max-width: 660px;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.playerItem {
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btn_start {
+  background-color: #262b29;
+  color: #e5e5e5;
+  border: none;
+  border-radius: 15px;
+  width: 300px;
+  height: 80px;
+  font-size: 40px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn_start:hover {
+  background-color: #e5e5e5;
+  color: #262b29;
+  cursor: pointer;
+}
+
+/* Play Room */
+.main_play {
+  background-color: #619b8a;
+  background-image: url("/cartographer.png");
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 2rem;
+}
+
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.riffleBtn {
+  background-color: #fe7f2d;
+  color: #e5e5e5;
+  border-radius: 15px;
+  padding: 20px 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.riffleBtn:hover {
+  background-color: #262b29;
+  color: #fff;
+}
+
+/* Bingo */
+.bingoContainer {
+  background: linear-gradient(
+    129deg,
+    rgba(200, 79, 0, 1) 43%,
+    rgba(254, 127, 45, 1) 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem 2rem;
+}
+
+.bingo_winner {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 900px) {
+  .main_wait,
+  .main_play,
+  .bingoContainer {
+    min-height: 240vh;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .playersList,
+  .gridTwo {
+    width: 100%;
+  }
+
+  .btn_start,
+  .riffleBtn {
+    width: 100%;
+    font-size: 22px;
+  }
+}

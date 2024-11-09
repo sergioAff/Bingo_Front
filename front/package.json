@@ -4,24 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev2": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "start2": "NODE_ENV=production node server.js",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "nodemon ./src/app/play/api/socket.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "clsx": "^1.2.1",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "isomorphic-fetch": "^3.0.0",
     "next": "^15.0.2",
+    "nodemon": "^3.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.2",
     "resend": "^4.0.1-alpha.0",
     "sass": "^1.80.6",
+    "socket-client": "^1.0.0",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"
   },
@@ -37,5 +38,8 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "18.18.0"
   }
 }
