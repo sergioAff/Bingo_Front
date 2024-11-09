@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { activate, reset } from "@/lib/auth/authSlice";
 import Spinner from "@/Components/Account/Spinner";
 import { pressStart2P } from "@/app/fonts/fonts"; // Fuente personalizada si es necesario
+import Link from "next/link";
 
 const ActivatePage = () => {
   const [uid, setUid] = useState(null);
@@ -117,12 +118,12 @@ const ActivatePage = () => {
 
           <p className="text-sm font-light text-gray-600 text-center mt-4">
             If you have not received the email, check your spam folder or{" "}
-            <a
+            <Link
               href="/resend-activation"
               className="font-medium text-pastelYellow hover:underline text-pastelMint"
             >
               resend the activation link.
-            </a>
+            </Link>
           </p>
         </div>
       </div>

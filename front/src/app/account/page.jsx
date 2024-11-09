@@ -63,7 +63,7 @@ export default function Account() {
     <div
       className={`${pressStart2P.className} flex flex-col items-center justify-center mx-auto md:h-screen bg-pastelBlue`}
     >
-      <div className="w-full rounded-lg shadow-lg sm:max-w-md bg-primary/85 ring-1 ring-gray-300 hover:ring-offset-2 transition-all duration-100 ease-in-out ring-offset-gray-300">
+      <div className="w-full rounded-lg shadow-lg sm:max-w-lg bg-primary/85 ring-1 ring-gray-300 hover:ring-offset-2 transition-all duration-100 ease-in-out ring-offset-gray-300">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           {user ? (
             <div>

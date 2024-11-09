@@ -41,7 +41,8 @@
     "src/app/account/resetPasswordConfirm/page.jsx",
     "src/app/account/resetPassword/page.jsx",
     "src/app/account/page.jsx",
-    "src/Components/Header/header.jsx"
+    "src/Components/Header/header.jsx",
+    "src/app/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,12 +1,56 @@
+"use client";
+
 import { CoverParticles } from "@/Components/CoverParticles";
+import { useEffect, useState } from "react";
 import { pressStart2P } from "@/app/fonts/fonts";
 import Image from "next/image";
+import { socket } from "../socket";
 
 export default function Home() {
+  const [isConnected, setIsConnected] = useState(false);
+  const [transport, setTransport] = useState(null);
+
+  useEffect(() => {
+    if (socket.connected) {
+      onConnect();
+    }
+
+    function onConnect() {
+      setIsConnected(true);
+      setTransport(socket.io.engine.transport.name);
+
+      socket.io.engine.on("upgrade", (transport) => {
+        setTransport(transport.name);
+      });
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+      setTransport("N/A");
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, []);
+
+  const test = async () => {
+    await fetch("play/api/socket?option=connection");
+  };
+
+  useEffect(() => {
+    test();
+  }, []);
   return (
     <div
       className={`${pressStart2P.className} flex flex-col items-center justify-center h-screen text-white`}
     >
+      {isConnected}
+      {transport}
       <CoverParticles />
       <div className="border border-gray-200 p-4 rounded-lg shadow-lg w-full text-center">
         <h2 className=" text-xl border-b pb-2 border-gray-200">

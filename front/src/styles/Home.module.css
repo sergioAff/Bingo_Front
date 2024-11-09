@@ -1,0 +1,70 @@
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f4f8; /* Color de fondo suave */
+}
+
+.btn_create {
+  background-color: #619b8a; /* Color de fondo primario */
+  min-width: 300px;
+  color: #e5e5e5; /* Color del texto */
+  height: 70px;
+  border-radius: 10px; /* Esquinas redondeadas */
+  border: none;
+  font-size: 18px; /* Tamaño de fuente ajustado */
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+.btn_create:hover {
+  background-color: #fe7f2d; /* Color de fondo al pasar el mouse */
+  cursor: pointer;
+}
+
+.btn_join {
+  background-color: #233d4d; /* Color de fondo secundario */
+  min-width: 300px;
+  margin-bottom: 10px;
+  color: #e5e5e5; /* Color del texto */
+  height: 70px; /* Altura ajustada para consistencia */
+  border-radius: 10px; /* Esquinas redondeadas */
+  border: none;
+  font-size: 18px; /* Tamaño de fuente ajustado */
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+.btn_join:hover {
+  background-color: #fe7f2d; /* Color de fondo al pasar el mouse */
+  cursor: pointer;
+}
+
+.img {
+  width: 300px;
+  margin-bottom: 20px; /* Espaciado inferior ajustado */
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem; /* Espaciado adicional en pantallas pequeñas */
+    align-items: center; /* Centrar elementos en pantallas pequeñas */
+    text-align: center; /* Alinear texto al centro */
+  }
+
+  .btn_create,
+  .btn_join {
+    min-width: auto; /* Ancho automático en pantallas pequeñas */
+    width: calc(
+      100% - 20px
+    ); /* Ajustar ancho para que se adapte a la pantalla */
+    margin-bottom: 10px; /* Espaciado entre botones en pantallas pequeñas */
+    font-size: 16px; /* Tamaño de fuente reducido en pantallas pequeñas */
+    height: auto; /* Altura automática para botones en pantallas pequeñas */
+    padding: 15px; /* Ajustes de relleno para botones en pantallas pequeñas */
+    border-radius: 8px; /* Esquinas redondeadas más suaves en pantallas pequeñas */
+  }
+}
