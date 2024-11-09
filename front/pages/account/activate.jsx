@@ -10,9 +10,7 @@ const ActivatePage = () => {
   const [token, setToken] = useState(null);
 
   const dispatch = useDispatch();
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);

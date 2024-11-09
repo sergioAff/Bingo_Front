@@ -3,7 +3,6 @@ import styles from "../styles/ChatDisplay.module.css";
 
 import ChatNav from "./ChatNav";
 import animations from "../utils/animations";
-import { MdOutlineSend } from "react-icons/md";
 
 export default function ChatDisplay(props) {
   const [msg, setMsg] = React.useState("");
@@ -87,7 +86,7 @@ export default function ChatDisplay(props) {
               className={`${styles.input_btn} mb-5 pb-2`}
               onClick={sendMsg}
             >
-              <MdOutlineSend className={styles.icon} />
+              {">"}
             </button>
           </div>
         </div>

@@ -7,6 +7,7 @@ import styles from "../styles/PlayerScreen.module.css";
 //components
 import PlayerDisplay from "./PlayerDisplay";
 import BingoDisplay from "./BingoDisplay";
+import Image from "next/image";
 
 let socket;
 export default function PlayerScreen(props) {
@@ -175,7 +176,7 @@ export default function PlayerScreen(props) {
     case "bingo":
       return (
         <section className={styles.bingo}>
-          <img src="/Logo2.svg"></img>
+          <Image alt="" width={100} height={100} src="/Logo2.svg"></Image>
           <p className={styles.bingo_winner}>
             {" "}
             {bingoWinner} {props.content.bingo.title}

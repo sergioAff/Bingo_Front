@@ -27,50 +27,50 @@ export default function Host() {
 
   // Set event listeners
   React.useEffect(() => {
+    const socketInitializer = async () => {
+      try {
+        await fetch("/api/socket?option=connection");
+        socket = io();
+
+        socket.on("connect", () => {
+          console.log("Connected");
+        });
+
+        socket.on("get-chat", (msg) => {
+          setChat((prev) => [...prev, msg]);
+        });
+
+        socket.on("get-new-player", (msg) => {
+          setPlayers((old) => {
+            let cartela = createCartela(
+              Number(qtdBalls),
+              old.filter((el) => el.cartela)
+            );
+            socket.emit("send-players", {
+              room: host,
+              msg: [...old.map((el) => el.name), msg.name],
+            });
+            socket.emit("send-cartela", { to: msg.id, cartela: cartela });
+            socket.emit("send-chat", {
+              room: host,
+              name: "newPlayer",
+              msg: `${msg.name} has joined.`,
+            });
+            return [...old, { name: msg.name, id: msg.id, cartela: cartela }];
+          });
+        });
+
+        socket.on("get-bingo", (msg) => {
+          setPath("bingo");
+          setBingoWinner(msg);
+        });
+      } finally {
+        socket.emit("join-room", host);
+      }
+    };
+
     socketInitializer();
   }, [host, qtdBalls]);
-
-  const socketInitializer = async () => {
-    try {
-      await fetch("/api/socket?option=connection");
-      socket = io();
-
-      socket.on("connect", () => {
-        console.log("Connected");
-      });
-
-      socket.on("get-chat", (msg) => {
-        setChat((prev) => [...prev, msg]);
-      });
-
-      socket.on("get-new-player", (msg) => {
-        setPlayers((old) => {
-          let cartela = createCartela(
-            Number(qtdBalls),
-            old.filter((el) => el.cartela)
-          );
-          socket.emit("send-players", {
-            room: host,
-            msg: [...old.map((el) => el.name), msg.name],
-          });
-          socket.emit("send-cartela", { to: msg.id, cartela: cartela });
-          socket.emit("send-chat", {
-            room: host,
-            name: "newPlayer",
-            msg: `${msg.name} has joined.`,
-          });
-          return [...old, { name: msg.name, id: msg.id, cartela: cartela }];
-        });
-      });
-
-      socket.on("get-bingo", (msg) => {
-        setPath("bingo");
-        setBingoWinner(msg);
-      });
-    } finally {
-      socket.emit("join-room", host);
-    }
-  };
 
   const startGame = () => {
     setPath("play-room");

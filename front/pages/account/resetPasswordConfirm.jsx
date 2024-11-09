@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPasswordConfirm } from "@/lib/auth/authSlice";
+import { resetPasswordConfirm } from "../../lib/auth/authSlice";
 
 const ResetPasswordPageConfirm = () => {
   const [formData, setFormData] = useState({
@@ -18,9 +18,7 @@ const ResetPasswordPageConfirm = () => {
   const [isClient, setIsClient] = useState(false); // Estado para saber si es cliente
 
   const dispatch = useDispatch();
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     setIsClient(true); // Solo ejecutar esto cuando el componente se monta en el cliente

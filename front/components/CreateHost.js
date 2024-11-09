@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
-export default function CreateHost(props) {
+export default function CreateHost() {
   const router = useRouter();
 
   const [thereIsRoom, setThereIsRoom] = React.useState(false);

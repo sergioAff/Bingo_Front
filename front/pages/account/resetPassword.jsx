@@ -13,9 +13,7 @@ const ResetPasswordPage = () => {
 
   const dispatch = useDispatch();
 
-  const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     setFormData((prev) => ({

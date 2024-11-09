@@ -7,6 +7,7 @@ import styles from "../styles/HostScreen.module.css";
 
 //componets
 import BingoDisplay from "./BingoDisplay";
+import Image from "next/image";
 
 let socket;
 let room1;
@@ -22,7 +23,6 @@ export default function HostScreen(props) {
   const [qtdBalls, setQtdBalls] = React.useState(99);
   const [path, setPath] = React.useState("create-room");
   const [players, setPlayers] = React.useState([]);
-  const [chat, setChat] = React.useState([]);
   const [sort, setSort] = React.useState([]);
   const [bingoWinner, setBingoWinner] = React.useState("");
   const [thereIsRoom, setThereIsRoom] = React.useState(false);
@@ -183,7 +183,7 @@ export default function HostScreen(props) {
     case "bingo":
       return (
         <section className={styles.bingo}>
-          <img src="/Logo2.svg"></img>
+          <Image src="/Logo2.svg" alt="" width={100} height={100}></Image>
           <p className={styles.bingo_winner}>
             {" "}
             {bingoWinner} {props.content.bingo.title}

@@ -22,54 +22,53 @@ export default function Room() {
   const [cartela, setCartela] = React.useState([]);
   const [raffleds, setRaffleds] = React.useState([]);
   const [bingoWinner, setBingoWinner] = React.useState("");
-  const [gameStatus, setGameStatus] = React.useState("playing"); // Estado para manejar pérdida
+  const [, setGameStatus] = React.useState("playing"); // Estado para manejar pérdida
 
   React.useEffect(() => {
+    const socketInitializer = async (name_) => {
+      try {
+        console.log("Initializing socket");
+        await fetch("/api/socket?option=connection");
+        socket = io();
+        socket.on("connect", () => {
+          if (name_ != undefined) joinRoom(room, name);
+        });
+
+        socket.on("get-players", () => {
+          // Handle player list
+        });
+
+        socket.on("get-chat", (msg) => {
+          setChat((prev) => [...prev, msg]);
+        });
+
+        socket.on("get-cartela", (msg) => {
+          // Receive player raffled numbers
+          setCartela(msg);
+        });
+
+        socket.on("get-raffleds", (msg) => {
+          // Receive raffled balls
+          setRaffleds(msg);
+        });
+
+        socket.on("start-game", () => {
+          // Start game
+          setPath("play-room");
+        });
+
+        socket.on("get-bingo", (msg) => {
+          // Handle bingo event
+          setPath("bingo");
+          setBingoWinner(msg);
+        });
+      } catch (e) {
+        console.log("Error: ", e);
+      }
+    };
+
     socketInitializer(name);
-  }, [name]);
-
-  // Set event listeners
-  const socketInitializer = async (name_) => {
-    try {
-      console.log("Initializing socket");
-      await fetch("/api/socket?option=connection");
-      socket = io();
-      socket.on("connect", () => {
-        if (name_ != undefined) joinRoom(room, name);
-      });
-
-      socket.on("get-players", (msg) => {
-        // Handle player list
-      });
-
-      socket.on("get-chat", (msg) => {
-        setChat((prev) => [...prev, msg]);
-      });
-
-      socket.on("get-cartela", (msg) => {
-        // Receive player raffled numbers
-        setCartela(msg);
-      });
-
-      socket.on("get-raffleds", (msg) => {
-        // Receive raffled balls
-        setRaffleds(msg);
-      });
-
-      socket.on("start-game", () => {
-        // Start game
-        setPath("play-room");
-      });
-
-      socket.on("get-bingo", (msg) => {
-        // Handle bingo event
-        setPath("bingo");
-        setBingoWinner(msg);
-      });
-    } catch (e) {
-      console.log("Error: ", e);
-    }
-  };
+  }, [name, room]);
 
   const joinRoom = (room_, name_) => {
     socket.emit("join-room", room_);
@@ -156,7 +155,7 @@ export default function Room() {
           {displayChat()}
           <section className={styles.main}>
             <p className="text-red-600 font-bold text-lg">
-              Sorry, {name2}, you didn’t achieve Bingo and have lost the game.
+              Sorry, {name2}, you did not achieve Bingo and have lost the game.
             </p>
             <button
               className={styles.btn_back}
