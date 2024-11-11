@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "next lint",
-    "start": "nodemon ./src/app/play/api/socket.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
